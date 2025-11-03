@@ -34,6 +34,10 @@
   --color-text-primary-on-brand: var(--p-white);
   --color-text-secondary-on-brand: var(--p-theme-200);
   --color-text-placeholder: var(--p-grey-500);
+  /* NEW: Specific hover text colors, one step darker than their base. */
+  --color-text-secondary-hover: var(--p-grey-800);
+  --color-text-tertiary-hover: var(--p-grey-700);
+
 
   /* --- Surfaces (Backgrounds) --- */
   --color-background-default: var(--p-grey-30);
@@ -54,6 +58,8 @@
   --color-control-bg-primary-hover: var(--p-grey-30);
   --color-control-bg-secondary: var(--p-grey-20);
   --color-control-bg-secondary-hover: var(--p-theme-50);
+  /* CORRECTED: Mapped to a valid primitive value. */
+  --color-control-bg-tertiary-hover: var(--p-theme-25);
   --color-control-bg-selected: var(--p-theme-50);
   --color-control-bg-selected-hover: var(--p-theme-100);
   --color-control-bg-disabled: var(--p-grey-50);
@@ -78,6 +84,7 @@
   /* Borders */
   --color-control-border-secondary: var(--p-grey-300);
   --color-control-border-secondary-hover: var(--p-grey-400);
+  --color-control-border-tertiary-hover: var(--p-theme-100);
   --color-control-border-selected: var(--p-theme-800);
   --color-control-border-disabled: var(--p-grey-300);
   --color-control-border-selected-hover: var(--p-theme-900);

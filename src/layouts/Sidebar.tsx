@@ -29,7 +29,6 @@ import PaletteOutlinedIcon from '@mui/icons-material/PaletteOutlined';
 
 import { AnimatedBestHumanLogo } from '../assets/AnimatedBestHumanLogo';
 
-// UPDATED: Sidebar width changed to 13rem (208px)
 const drawerWidth = '13rem';
 
 const mainNavItems = [
@@ -64,7 +63,6 @@ export default function Sidebar() {
             height: '60px',
             display: 'flex',
             alignItems: 'center',
-            // UPDATED: Horizontal padding is now 20px (1.25rem)
             px: 'var(--spacing-5)',
             borderBottom: '1px solid var(--color-border-secondary)',
             flexShrink: 0,
@@ -91,19 +89,20 @@ export default function Sidebar() {
                   to={item.path}
                   end={item.path === '/'}
                   sx={{
-                    // UPDATED: Horizontal padding is now 20px (1.25rem)
                     padding: 'var(--space-sm) var(--spacing-5)',
                     borderRadius: 'var(--radius-md)',
                     color: 'var(--color-text-tertiary)',
                     border: '1px solid transparent',
-                    transition: 'background-color 200ms, color 200ms',
+                    transition: 'background-color 200ms, color 200ms, border-color 200ms',
 
                     '.inactive-icon': { display: 'block' },
                     '.active-icon': { display: 'none' },
 
+                    // CORRECTED: Uses the specific tertiary-hover token for text color.
                     '&:hover': {
-                      backgroundColor: 'var(--color-control-bg-secondary-hover)',
-                      color: 'var(--color-text-secondary)',
+                      backgroundColor: 'var(--color-control-bg-tertiary-hover)',
+                      borderColor: 'var(--color-control-border-tertiary-hover)',
+                      color: 'var(--color-text-tertiary-hover)',
                       '& .MuiSvgIcon-root': {
                         fontVariationSettings: "'wght' 500",
                       },

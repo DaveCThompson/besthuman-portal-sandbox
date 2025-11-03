@@ -106,5 +106,5 @@ Our stack is chosen to maximize developer velocity, code quality, and UI fidelit
 
 5.  **Accessibility (a11y) is a Core Feature:**
     -   Use semantic HTML5 elements (`<nav>`, `<main>`, `<button>`).
-    -   Leverage MUI's built-in accessibility features.
+    -   Leverage MUI's built in accessibility features..
     -   Ensure all interactive elements are keyboard-navigable and have clear focus states.

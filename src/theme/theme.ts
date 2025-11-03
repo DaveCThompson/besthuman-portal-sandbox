@@ -73,6 +73,28 @@ export const theme = createTheme({
       },
     },
     MuiButton: {
+      styleOverrides: {
+        root: {
+          position: 'relative',
+          outline: 'none',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: '-4px',
+            left: '-4px',
+            right: '-4px',
+            bottom: '-4px',
+            borderRadius: 'var(--radius-lg)',
+            border: '2px solid var(--color-focus-ring-standard)',
+            opacity: 0,
+            transition: 'opacity 150ms ease-in-out',
+            pointerEvents: 'none',
+          },
+          '&.Mui-focusVisible::after': {
+            opacity: 1,
+          },
+        },
+      },
       variants: [
         {
           props: { variant: 'contained', color: 'primary' },
@@ -85,7 +107,6 @@ export const theme = createTheme({
             padding: 'var(--space-xs) var(--space-lg)',
             overflow: 'hidden',
             transition: 'background-image 200ms ease-out, background-color 200ms ease-out, box-shadow 150ms ease-out',
-            // CORRECTED: Specific white ripple for primary buttons
             '& .MuiTouchRipple-child': {
               backgroundColor: 'rgba(255, 255, 255, 0.3)',
             },
@@ -98,13 +119,6 @@ export const theme = createTheme({
             },
             '&:active': {
               boxShadow: 'var(--shadow-deuomorphic-pressed), var(--shadow-deuomorphic)',
-            },
-            '&:focus': {
-              outline: 'none',
-            },
-            '&:focus-visible': {
-              outline: 'none',
-              boxShadow: '0 0 0 3px var(--color-background-default), 0 0 0 5px var(--color-focus-ring-standard)',
             },
           },
         },
@@ -119,10 +133,9 @@ export const theme = createTheme({
             padding: 'var(--space-xs) var(--space-lg)',
             overflow: 'hidden',
             transition: 'background-color 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out',
-            // CORRECTED: Specific red ripple for outlined buttons
             '& .MuiTouchRipple-child': {
               backgroundColor: 'var(--color-primary-main)',
-              opacity: 0.2,
+              opacity: 0.1,
             },
             '&:hover': {
               color: 'var(--color-control-fg-secondary-hover)',
@@ -137,42 +150,21 @@ export const theme = createTheme({
               backgroundColor: 'var(--color-control-bg-secondary-pressed)',
               borderColor: 'var(--color-control-border-secondary-pressed)',
             },
-            '&:focus': {
-              outline: 'none',
-            },
-            '&:focus-visible': {
-              outline: 'none',
-              borderColor: 'var(--color-focus-ring-standard)',
-              boxShadow: '0 0 0 3px var(--color-focus-ring-standard)',
-            },
           },
         },
       ],
-      // REMOVED: Global ripple override which was causing issues
-      styleOverrides: {
-        root: {},
-      },
     },
     MuiListItemButton: {
       styleOverrides: {
         root: {
           '& .MuiTouchRipple-root': {
             color: 'var(--color-primary-main)',
-            opacity: 0.2,
+            opacity: 0.1,
           },
         },
       },
     },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          '& .MuiTouchRipple-root': {
-            color: 'var(--color-primary-main)',
-            opacity: 0.2,
-          },
-        },
-      },
-    },
+    // CORRECTED: Removed ineffective global overrides for Tab and ToggleButton ripples.
     MuiCard: {
       styleOverrides: {
         root: {
@@ -185,6 +177,50 @@ export const theme = createTheme({
     MuiPaper: {
       defaultProps: {
         elevation: 0,
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'filled',
+        fullWidth: true,
+      },
+      styleOverrides: {
+        root: {
+          '& .MuiFilledInput-root': {
+            backgroundColor: 'var(--color-background-secondary-subtle)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--color-border-secondary)',
+            transition: 'background-color 200ms ease, border-color 200ms ease',
+            '&:hover': {
+              backgroundColor: 'var(--color-background-tertiary)',
+            },
+            '&.Mui-focused': {
+              backgroundColor: 'var(--color-background-paper)',
+              borderColor: 'var(--color-primary-main)',
+            },
+            '&::before, &::after': {
+              display: 'none',
+            },
+          },
+          '& .MuiInputLabel-root': {
+            fontWeight: 'var(--font-weight-medium)',
+            color: 'var(--color-text-secondary)',
+            '&.Mui-focused': {
+              color: 'var(--color-primary-main)',
+            },
+          },
+        },
+      },
+    },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          border: 'none',
+          '&:before': {
+            display: 'none',
+          },
+        },
       },
     },
   },
