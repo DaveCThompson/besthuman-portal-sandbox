@@ -1,0 +1,131 @@
+/* src/theme/semantics.css */
+/* Contextual tokens that map primitives to use-cases. */
+:root {
+  /* --- Palette --- */
+  /* Maps directly to MUI's theme.palette */
+  --color-primary-light: var(--p-theme-300);
+  --color-primary-main: var(--p-theme-600);
+  --color-primary-dark: var(--p-theme-800);
+  --color-primary-contrastText: var(--p-white);
+
+  --color-error-light: var(--p-red-50);
+  --color-error-main: var(--p-red-600);
+  --color-error-dark: var(--p-red-700);
+
+  --color-warning-light: var(--p-yellow-50);
+  --color-warning-main: var(--p-yellow-600);
+  --color-warning-dark: var(--p-yellow-700);
+
+  --color-info-light: var(--p-blue-50);
+  --color-info-main: var(--p-blue-600);
+  --color-info-dark: var(--p-blue-700);
+
+  --color-success-light: var(--p-green-50);
+  --color-success-main: var(--p-green-600);
+  --color-success-dark: var(--p-green-700);
+
+  /* --- Text --- */
+  --color-text-primary: var(--p-grey-900);
+  --color-text-secondary: var(--p-grey-700);
+  --color-text-tertiary: var(--p-grey-600);
+  --color-text-quaternary: var(--p-grey-500);
+  --color-text-disabled: var(--p-grey-500);
+  --color-text-on-solid: var(--p-white); /* Text on a dark/colored background */
+  --color-text-primary-on-brand: var(--p-white);
+  --color-text-secondary-on-brand: var(--p-theme-200);
+  --color-text-placeholder: var(--p-grey-500);
+
+  /* --- Surfaces (Backgrounds) --- */
+  --color-background-default: var(--p-grey-30);
+  --color-background-paper: var(--p-white);
+  --color-background-secondary: var(--p-grey-10);
+  --color-background-tertiary: var(--p-grey-40);
+  --color-background-brand-solid: var(--p-theme-600);
+  --color-background-brand-subtle: var(--p-theme-50);
+  --color-background-error-subtle: var(--p-red-50);
+  --color-background-warning-subtle: var(--p-yellow-50);
+  --color-background-success-subtle: var(--p-green-25);
+  --color-background-info-subtle: var(--p-blue-25);
+  --color-background-secondary-subtle: var(--p-grey-10);
+
+  /* --- Controls (Buttons, Inputs, etc.) --- */
+  /* Backgrounds */
+  --color-control-bg-primary: var(--p-white);
+  --color-control-bg-primary-hover: var(--p-grey-30);
+  --color-control-bg-secondary: var(--p-grey-20);
+  --color-control-bg-secondary-hover: var(--p-theme-50);
+  --color-control-bg-selected: var(--p-theme-50);
+  --color-control-bg-selected-hover: var(--p-theme-100);
+  --color-control-bg-disabled: var(--p-grey-50);
+  --color-control-bg-theme: var(--p-grey-900); /* Dark buttons */
+  --color-control-bg-theme-hover: var(--p-grey-800);
+  --color-control-bg-secondary-pressed: var(--p-theme-100);
+
+  /* Foreground (Text/Icons) */
+  --color-control-fg-primary: var(--p-grey-900);
+  --color-control-fg-secondary: var(--p-grey-800);
+  --color-control-fg-disabled: var(--p-grey-500);
+  --color-control-fg-selected: var(--p-theme-800);
+  --color-control-fg-alert: var(--p-red-700);
+  --color-control-fg-success: var(--p-green-700);
+  --color-control-fg-warning: var(--p-yellow-700);
+  --color-control-fg-info: var(--p-blue-700);
+  --color-control-fg-on-solid: var(--p-white);
+  --color-control-fg-selected-hover: var(--p-theme-900);
+  --color-control-fg-secondary-hover: var(--p-theme-700);
+  --color-control-fg-secondary-pressed: var(--p-grey-950);
+
+  /* Borders */
+  --color-control-border-secondary: var(--p-grey-300);
+  --color-control-border-secondary-hover: var(--p-grey-400);
+  --color-control-border-selected: var(--p-theme-800);
+  --color-control-border-disabled: var(--p-grey-300);
+  --color-control-border-selected-hover: var(--p-theme-900);
+  --color-control-border-secondary-pressed: var(--p-grey-400);
+
+  /* --- Borders (General) --- */
+  --color-border-primary: var(--p-grey-300);
+  --color-border-secondary: var(--p-grey-200);
+  --color-border-tertiary: var(--p-grey-100);
+  --color-border-theme: var(--p-theme-500);
+  --color-border-alert: var(--p-red-500);
+  --color-border-success: var(--p-green-200);
+
+  /* --- Focus --- */
+  --color-focus-ring-standard: var(--p-blue-500);
+  --color-focus-ring-error: var(--p-red-500);
+
+  /* --- Gradients --- */
+  /* NEW: From Figma for primary button hover */
+  --gradient-primary-hover: linear-gradient(180deg, var(--p-theme-500) 0%, var(--p-theme-600) 8%, var(--p-theme-600) 100%);
+
+  /* --- Shadows (High-Craft) --- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-deuomorphic:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.24), /* Top inner highlight */
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.10), /* Bottom inner shadow */
+    0 1px 2px 0 rgba(0, 0, 0, 0.1); /* Subtle drop shadow */
+  --shadow-deuomorphic-pressed:
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.15); /* Deeper inner shadow for pressed state */
+
+  /* --- Spacing Aliases --- */
+  --space-xxs: var(--spacing-0p5); /* 2px */
+  --space-xs: var(--spacing-1);   /* 4px */
+  --space-sm: var(--spacing-2);   /* 8px */
+  --space-md: var(--spacing-4);   /* 16px */
+  --space-lg: var(--spacing-6);   /* 24px */
+  --space-xl: var(--spacing-8);   /* 32px */
+  --space-2xl: var(--spacing-10); /* 40px */
+  --space-3xl: var(--spacing-12); /* 48px */
+
+  /* --- Radius Aliases --- */
+  --radius-xs: var(--radius-4);
+  --radius-sm: var(--radius-6);
+  --radius-md: var(--radius-8);
+  --radius-lg: var(--radius-12);
+  --radius-xl: var(--radius-16);
+  --radius-full: var(--radius-full);
+}
