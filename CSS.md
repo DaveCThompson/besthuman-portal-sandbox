@@ -44,20 +44,17 @@ We rely exclusively on MUI's layout components for consistency.
 
 #### The Global Customization Contract (`theme.ts`)
 
-To ensure UI components are consistent, we customize them globally in `src/theme/theme.ts`. Instead of styling each component instance, we define styles once in the `components` section of our `createTheme` call, often using **variants**.
+To ensure UI components are consistent, we customize them globally in `src/theme/theme.ts`. Instead of styling each component instance, we define styles once in the `components` section of our `createTheme` call. This guarantees that every `<Button>` or `<TextField>` rendered in the app adheres to our standards by default, reducing code duplication.
 
-This guarantees that every `<Button>` or `<Tab>` rendered in the app adheres to our standards by default, reducing code duplication and eliminating inconsistencies.
+#### High-Craft Focus States (Keyboard-Only)
 
-```ts
-// inside src/theme/theme.ts
-MuiButton: {
-  variants: [
-    {
-      props: { variant: 'contained', color: 'primary' },
-      style: {
-        /* ... high-fidelity styles ... */
-      },
-    },
-    // ... other variants
-  ],
-},
+We provide clear accessibility for keyboard users without penalizing mouse users with unnecessary outlines.
+-   **Method:** A custom focus ring is implemented using an `::after` pseudo-element on interactive components.
+-   **Trigger:** The ring's visibility is toggled **only** by MUI's `.Mui-focusVisible` class, which is applied exclusively during keyboard navigation.
+-   **Implementation:** All interactive components must have `position: relative` and `outline: none`. The focus ring is then defined on the `&.Mui-focusVisible::after` selector.
+
+#### Reliable Ripple Effects
+
+MUI's ripple (`TouchRipple`) styling is notoriously difficult to override globally.
+-   **RULE:** Do not attempt to style the ripple effect in `theme.ts`. It is unreliable.
+-   **Method:** To ensure a consistent ripple effect, the `TouchRippleProps` prop **must** be applied directly to the component instance on the page where it is used (e.g., `<StyledTab {...rippleProps} />`).
