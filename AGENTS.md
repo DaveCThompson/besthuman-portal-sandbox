@@ -1,7 +1,3 @@
-END:
-
-#### **AGENTS.md**
-```markdown
 # Agent Charter & Execution Protocol
 
 This document defines the operating protocol for AI agents working on the Best Human Portal Sandbox codebase. Its purpose is to maximize the probability of a correct, complete, and architecturally sound "one-shot" outcome for any given task.
@@ -27,6 +23,7 @@ For any non-trivial task, the agent must follow this internal thought process *b
 
 These are non-negotiable rules for this project. Violating them will result in rework.
 
+0.  **Consult `DIAGNOSTICS.md` First.** For any issue listed in `DIAGNOSTICS.md`, the agent must first read the entire entry for that issue and execute the "Systematic Verification Plan" outlined there. Do not attempt to solve a known, tracked issue without first using the established diagnostic framework.
 1.  **The Rules of Hooks are Absolute.** All React Hooks must be called unconditionally at the top level of a component.
 2.  **MUI Components are the Default.** Do not build a primitive component from scratch if a corresponding MUI component exists.
 3.  **Styling is Token-First.** No hardcoded style values. All styling must originate from the design token system.
@@ -43,3 +40,9 @@ These are non-negotiable rules for this project. Violating them will result in r
 14. **Prevent Layout Shift with Invisible Borders:** When a state change (e.g., `:hover`, `.Mui-selected`) adds a border, it will cause a layout shift. The best practice is to give the element a border in its default state that is colored to be invisible against its background (e.g., `border: '1px solid var(--color-background-secondary)'`).
 15. **Clean Shadows on Rounded Corners:** Browser rendering can cause `box-shadow` to look rough or "janky" around `border-radius` corners. The fix is to add `overflow: hidden` to the element's style, which forces the browser to clip the shadow cleanly to the border.
 16. **Forcing Circular Shapes:** If a container with `borderRadius: 'var(--radius-full)'` fails to render as a perfect circle, it is likely because text content inside is stretching it. The fix is to apply `lineHeight: 0` to the container to collapse the text's vertical space, allowing the shape to become circular.
+17. **Explicitly Type Complex Style Objects.** When creating a complex style object for use with the `styled()` utility (especially one with nested selectors like `&.Mui-selected` or `&::after`), TypeScript's inference can fail, causing a `No overload matches this call` error. **The fix is to explicitly type the style object as `SystemStyleObject<Theme>` from `@mui/system`**. This removes all ambiguity for the compiler.
+18. **Override Aggressive Component Styles Defensively.** Some MUI components, like `ToggleButtonGroup`, aggressively apply styles to their children to enforce a specific look (e.g., removing `borderRadius` to create a segmented control). To override this, you must win the CSS specificity war. The pattern is twofold:
+    - **In the styled component:** Add a highly specific selector that targets the class the parent applies (e.g., `&.MuiToggleButtonGroup-grouped { borderRadius: 'var(--radius-md)'; }`).
+    - **In the JSX:** Use layout props like `gap` on the parent (`<ToggleButtonGroup sx={{ gap: '...' }}>`) to provide the physical space for your custom styles (like rounded corners) to be visible.
+19. **Scrutinize Global Stylesheets for Conflicts.** Boilerplate CSS files like `index.css` often contain global element selectors (e.g., `button { ... }`). These low-specificity styles can create silent, hard-to-debug conflicts with the component library's styles. A global `transition` rule in `index.css` was the root cause of all transition failures. **Always assume global styles are a potential source of error and validate them first.**
+20. **Respect CSS Animation Limitations.** Do not attempt to transition non-animatable properties. The most common pitfall is `backgroundImage` with a `linear-gradient()`. The browser cannot interpolate between two gradients, causing the transition to be instant. The correct pattern is to transition animatable properties like `backgroundColor`, `opacity`, or `transform` instead.
